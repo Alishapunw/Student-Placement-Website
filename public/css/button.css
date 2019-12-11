@@ -1,0 +1,28 @@
+.login100-form-btn {
+  /*display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;*/
+  align-items: center;
+  
+  min-width: 160px;
+  height: 50px;
+  background-color: #282726;
+  border-radius: 10px;
+
+  font-size: 16px;
+  color: #fff;
+ 
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+
+  background-color: #f05837;
+}

@@ -1,0 +1,360 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  /* font-family: Lato, Helvetica, Arial, sans-serif; */
+}
+
+a {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+/*======================================================
+                        Preheader
+======================================================*/
+
+.preheader{
+  background: #204a84;
+  color: white;
+  height:30px;
+  padding: 5px;
+  padding-left: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 40px;
+}
+.left-flex{
+  display: flex;
+  
+}
+.left-flex span{
+  margin: 0 1rem;
+}
+
+.right-flex ul{
+  
+  list-style-type:none;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.right-flex ul li a{
+  margin: 0 1rem;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  display: inline;
+}
+@media(max-width:333px)
+{
+  .preheader{
+    display: none;
+  }
+}
+
+/*======================================================
+                        Navbar
+======================================================*/
+
+
+#navbar {
+  
+  background: white;
+  top: 0;
+  height: 60px;
+  line-height: 60px;
+  width: 100vw;
+  padding-left: 1rem;
+  padding-top:0rem;
+  
+}
+
+.nav-wrapper {
+  margin: auto;
+  text-align: center;
+
+} 
+
+
+.logo {
+  float: left;
+  height: 60px;
+  letter-spacing: 1px;
+  padding: 0;
+  font-family: Garamond;
+
+  /* font-family: 'Times New Roman', Times */
+} 
+
+#navbar span{
+  color: #204a84;
+ font-size: 2vw;
+ font-weight: bolder;
+}
+.logo{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#mySidenav, .slidenav, .toggle{
+  display: none;
+}
+
+@media(min-width:650px){
+#mySidenav, .slidenav, .toggle{
+  display: none;
+}}
+
+
+#navbar ul{
+ display: flex;
+ margin-right: 2rem;
+ justify-content: flex-end;
+list-style: none;
+font-family: Garamond;
+}
+
+#navbar ul li a{
+
+/* font-family: 'Montserrat', sans-serif; */
+
+font-family: Garamond;
+font-size: 1.1vw;
+font-weight: 500;
+height:50px;
+letter-spacing: 1px;
+margin: 0px 0.8vw;
+padding: 0 4px;
+position: relative;
+text-decoration: none;
+text-transform: uppercase;
+transition: all 0.5s ease;
+-webkit-transition: all 0.5s ease;
+}
+
+#navbar li a:hover {
+/* border-bottom: 1px solid rgb(28, 121, 184); */
+color: blue;
+font-size: 1.2vw;
+transition: all 1s ease;
+-webkit-transition: all 1s ease;
+}
+
+
+
+
+/* Animated Bottom Line */
+#navbar li a:before, #navbar li a:after {
+content: '';
+position: absolute;
+width: 0%;
+height: 1px;
+bottom: -1px;
+
+}
+
+#navbar li a:before {
+left: 0;
+transition: 0.5s;
+}
+
+#navbar li a:after {
+
+right: 0;
+transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+#navbar li a:hover:before {
+
+width: 100%;
+transition: width 0.5s cubic-bezier((0.22, 0.61, 0.36, 1));
+}
+
+#navbar li a:hover:after {
+background: transparent;
+width: 100%;
+/* transition: 0s; */
+}
+
+/*======================================================
+                  Navbar for Mobile
+======================================================*/
+
+
+@media(max-width:970px){
+
+        #navbar ul{
+          display: none;
+        }
+        .toggle{
+          display: flex;
+          color: #204a84;
+          align-items: center;
+          justify-content: flex-end;
+          margin-right: 5vw;
+          padding-right:2vw;
+          font-size: 3.5vw;
+          height:60px;
+          flex-wrap: nowrap;
+          
+            
+        }
+        .toggle i{
+          cursor: pointer;
+        }
+
+                  
+        .slidenav {
+          height: 200vh;
+          width: 50%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: #152844;
+          overflow-x: hidden;
+          transition: all 0.3s;
+          padding-top: 60px;
+          display:none;
+          border-style:  inset;
+          border-color: goldenrod;
+          border-width: 0px 1px 1px 0px;
+          border-radius:2px;
+            
+        }
+        
+        .slidenav .header{
+            color: white !important;
+            text-align: center; !important;
+            
+            
+            
+        }
+        
+        .slidenav a {
+          padding: 8px 8px 8px 32px !important;
+          text-decoration: none !important;
+          font-size: 1.5rem !important;
+          color: white !important;
+          display: block;
+          transition: 0.3s !important;
+          
+
+        }
+
+        a::after, a::before{
+          text-decoration: none;
+        }
+        
+        .slidenav a:hover {
+          color: #f8c100 !important;
+          text-decoration: none;
+          transform: scale(1.2) !important;
+        }
+        
+        .slidenav .closebtn {
+          position: absolute;
+          top: 0;
+          right: -1;
+          font-size: 3rem;
+          -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+        
+
+
+}
+@media(min-width:311px){
+  .large{
+    display: inline-block;
+
+  }
+  .short{
+    display:none;
+  }
+}
+
+@media(max-width: 310px){
+  .large{
+    display:none;
+  }
+  .short{
+    display: inline-block;
+    font-size: 8vw;
+  }
+}
+
+
+/*======================================================
+                 Fixed Footer
+======================================================*/
+
+.bottomfooter{
+  bottom: 0;
+  margin-left: 0px;
+  width: 100%;
+  position: fixed;
+  background-color: #0d0d0d;
+  z-index: 9999 !important;
+}
+
+.bottomfooter p{
+
+  width: 100%;
+  color: white; 
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media(max-width:270px){
+  .bottomfooter{
+    display: none;
+  }
+}
+
+
+/*======================================================
+                 VES Footer
+======================================================*/
+
+
+  .vesitfooter{
+background: #222222 !important;
+color: white !important;
+text-align: left !important;
+}
+
+  .vesitfooter *:hover{
+color:white !important;
+text-decoration:none !important;
+}
+
+  .list-unstyled {
+margin-top: 3rem !important;
+}
+
+  .list-unstyled i{
+margin-right: 1rem !important;
+}
+  
+  .list-unstyled li{
+
+margin-bottom: 1rem !important;
+}
+
+
+
+
+/* .toggle i{
+  margin-top: 25px;
+} */
+
+

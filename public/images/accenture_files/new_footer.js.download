@@ -1,0 +1,106 @@
+// @author : SANGEET BRO
+// FOLLOW MODULAR DESIGN PRINCIPLES
+
+
+var submitHandler = (function () {
+    var footer_fields = document.querySelectorAll('.footer_fields');
+    var validation_errors = document.getElementById('validation-errors-footer');
+    return {
+        emailValidate: function(field){
+            //strict validation for email
+            var emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+            if(!(emailRegex.test(field.value))){
+                var text = ' Please enter a valid email.';
+                validation_errors.insertAdjacentHTML('beforeend', text);
+                validate = false;
+            }
+        },
+        requiredValidate: function(field){
+            //strict validation for required fields
+            if((field.value.trim()).length < 1){
+                var text = ' Please select a valid course.';
+                validation_errors.insertAdjacentHTML('beforeend', text);
+                validate = false;
+            }
+        },
+         errorForm : function(type,fields){
+            if(type == 'focus'){
+                //remove error messages on focus
+                [].forEach.call(fields, function(key,value){
+                    key.onfocus = function(event){
+                        // console.log("here");
+                        validation_errors.innerHTML = '';
+                    }
+                });
+            }
+            if(type == 'err'){
+                submitHandler.emailValidate(fields[0]);
+                submitHandler.requiredValidate(fields[1]);
+            }
+        },
+        onsubmit: function () {
+            submitHandler.errorForm('focus',footer_fields);
+            $(".subscribe_submit").on('click', function (event) {
+                // footerValidations.validateChoice();
+                // footerValidations.validateEmail();
+
+                // var email = $('#subscriber_email').val();
+                // var choice = $('#select_course').val();
+                event.preventDefault();
+                // var error_msg = document.querySelectorAll('.validation-errors');
+                validation_errors.innerHTML = '';
+                // console.log(validation_errors);
+                validate = true;
+                submitHandler.errorForm('err',footer_fields);
+                if (validate) {
+                    $.ajax({
+                        url: BASE_HREF + 'email-subscribe/insert-to-subscribe-news-letter',
+                        type: 'POST',
+                        data: 'email=' + footer_fields[0].value + '&course=' + footer_fields[1].value + '&ajax=1',
+                        beforeSend: function () {
+                            $('subscribe_submit').addClass('disabled');
+                        },
+                        success: function (response) {
+                            // console.log(JSON.stringify(response));
+                            response = JSON.stringify(response);
+                            response = JSON.parse(response);
+                            $('subscribe_submit').removeClass('disabled');
+                            if (response.status) {
+                                //success Message
+                                $('.form-inline').remove();
+                                $("#form_response").html(response.message);
+                                // $("#form_response").css("background-color", "rgb(54, 132, 53);");
+                                $("#form_response").css("top", "-3px");                            }
+                            else {
+                                //error Message
+                                $("#form_response").html(response.message);
+                                $("#form_response").css("background-color", "#ff4545");
+                            }
+
+                        }
+
+                    })
+                }
+            });
+        }
+    }
+})();
+
+
+
+//@author : Sangeet == 15-march-2016
+var ImageOptimizationsFooter = (function () {
+    return {
+        lazyloadfooter: function () {
+            $("img.footer_img").each(function() {
+                $(this).attr("src",$(this).data("src"));
+                $(this).removeAttr("data-src");
+            });
+        }
+    }
+
+})();
+$(document).ready(function () {
+    ImageOptimizationsFooter.lazyloadfooter();
+    submitHandler.onsubmit();
+});

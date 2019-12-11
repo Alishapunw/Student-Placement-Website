@@ -1,0 +1,153 @@
+
+
+
+body{
+    background-color: white;
+}
+
+
+
+#top {
+        color:white;
+        /* font-family: 'Roboto', sans-serif; */
+        font-weight: bold;
+        font-size: 6.2rem;
+        position: absolute;
+        top:21rem;
+        left:8.5rem;
+        
+       
+ }
+  @media(max-width:915px){       
+        #top {
+    font-size: 4rem;
+    top:12rem;
+    }
+
+    #bottom{
+        color:white;
+        /* font-family: 'Dancing Script', cursive; */
+        font-size:2.3rem;
+        position: absolute;
+        
+    }
+     }
+ @media(max-width:600px){       
+    #top {
+       font-size: 3rem;
+    }
+}
+@media(max-width:450px){       
+    #top {
+        font-size: 1.5rem;
+
+        }
+    }
+
+
+
+   
+#bottom{
+    color:white;
+    /* font-family: 'Dancing Script', cursive; */
+    font-size:250%;
+    position: absolute;
+   top:43rem;
+    left:10rem;
+}
+
+#download li{
+    display: inline;
+}
+#download h3{
+    font-size: 2rem;
+    font-weight: bold;
+    
+    color: #152844;
+}
+#download a{
+    text-decoration:none;
+    color:#ffca2a    ;
+}
+
+#download button{
+    background-color: #163886;
+    border: none;
+    border-radius: 0.9rem;
+    color: blue;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2.0rem;
+    margin: 3rem 1.4rem;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+#download button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    transform: scale(1.1)
+}
+
+#rocket{
+    background:#152844;
+}
+
+@media(max-width: 768px) {
+    #rocket{
+        display: none;
+    }
+
+
+}
+
+.login-form-1{
+    background-color: #152844;
+    border-radius: 4rem 0rem 0.2rem 0rem;
+}
+.login-form-2{
+    background-color: #204a84;
+    border-radius: 0.2rem 0rem 4rem 0rem;
+
+}
+
+.form-group> input{
+    color:black;
+}
+.form-group> input:valid{
+    color:black;
+}
+
+
+
+.row-flex{
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    
+   
+    }
+@media(max-width:950px)
+{
+    .row-flex{
+    flex-wrap:wrap;}
+}
+   
+
+.recruit{
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 0.8rem;
+    margin: 1rem 2rem;
+    box-shadow:  0.1rem 0.01rem 1rem  #152844;
+    background: whitesmoke;
+      
+}
+ .recruit img{
+    transition: transform 1s;
+}
+.recruit img:hover{
+    transform: scale(1.1,1.1);
+} 

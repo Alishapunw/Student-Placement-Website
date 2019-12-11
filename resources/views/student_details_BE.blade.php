@@ -1,0 +1,480 @@
+
+
+
+@extends('layout.app1')
+@section('content')
+{{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+<script src="{{  asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/validation.js') }}"></script> --}}
+      
+
+
+<body>
+<div class="container-fluid">
+   <div class="row content">
+      <div class="col-sm-3" style="padding-left: 7%">
+         <div class="list-group form-group" style="max-width: 100%; ">
+            <a href="{{ route('student_details') }}" class="list-group-item shadow-lg">
+               <h5 class="list-group-item-heading">Student <br>Details&nbsp;
+                  {{-- @if($user[0]->is_personal_completed == 1)
+                  <i class="fas fa-check-circle" style="float: right; padding-right: 9.2%;"></i>&nbsp;
+                  @else
+                  <i class="fas fa-times-circle" style="float: right; padding-right: 9.2%;"></i>&nbsp;
+                  @endif --}}
+               </h5>
+            </a>
+            <a href="{{ route('academic_details') }}" class="list-group-item shadow-lg">
+               <h5 class="list-group-item-heading">Academic <br>Details&nbsp;
+                  {{-- @if($user[0]->is_academic_completed == 1)
+                  <i class="fas fa-check-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+                  @else
+                  <i class="fas fa-times-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+                  @endif --}}            
+               </h5>
+            </a>
+            <a href="{{ route('upload_resume') }}" class="list-group-item shadow-lg">
+               <h5 class="list-group-item-heading">Upload <br>Resume&nbsp;
+                  {{-- @if($user[0]->is_family_details_completed == 1)
+                  <i class="fas fa-check-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+                  @else
+                  <i class="fas fa-times-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+                  @endif --}}
+               </h5>
+            </a>
+             <a href="{{ route('placement_apply') }}" class="list-group-item shadow-lg">
+            <h5 class="list-group-item-heading">Company <br>Offers&nbsp;
+              {{-- @if($user[0]->is_family_details_completed == 1)
+              <i class="fas fa-check-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+              @else
+              <i class="fas fa-times-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+              @endif --}}
+            </h5>
+          </a>
+             <a href="{{ route('applied_companies') }}" class="list-group-item shadow-lg">
+            <h5 class="list-group-item-heading">Applied <br>Companies&nbsp;
+               <!-- <i class="fas fa-check-circle" style="float: right; padding-right: 5%;"></i>&nbsp;
+               <i class="fas fa-times-circle" style="float: right; padding-right: 5%;"></i>&nbsp; -->
+            </h5>
+            </a> 
+            {{-- <a style="height: 0.5rem">&nbsp;</a>
+            <a href="" class="list-group-item shadow-lg">
+               <h5 class="list-group-item-heading">Student Achievement&nbsp;
+               </h5>
+            </a>
+            <a href="" class="list-group-item shadow-lg">
+               <h5 class="list-group-item-heading">Student Alumni&nbsp;
+               </h5>
+            </a> --}}
+         </div>
+      </div>
+      <div class="col-md-7">
+         {{-- Student Details --}}
+         <form method="post" action="{{ route('student_details') }}">
+            {{csrf_field()}}
+            <div class="form-group card shadow-lg p-3 mb-5 bg-white rounded col-md-12" style="max-width: 100%;">
+               <div class="card-header">
+                  <center><h1>Student Details - BE</h1></center>
+               </div>
+
+
+          
+         
+
+
+            <div class="card-body">
+               <div class="form-group col-md-12">
+
+               <!-- <div class="row">
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                        <label class="input-group-text" for="courseName">Course Name</label>
+                  </div>
+                  <select class="custom-select" id="courseName" onchange="courseSelected();">
+                        <option selected>Choose...</option>
+                        <option value="1">BE (First Year Admission)</option>
+                        <option value="2">BE (DSE)</option>
+                        <option value="3">MCA</option>
+                  </select>
+
+                
+             </div> 
+             
+                                  
+               
+               </div> -->
+
+                  <div class="row">
+              
+                     <div class="form-group col-md-6">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" class="form-control" id="full_name" name="full_name" value="{{ $user[0]->full_name }}" placeholder="Enter your full name" required="">
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="mother_name">Mother Name</label>
+                        <input type="text" class="form-control" id="mother_name" name="mother_name" value="{{ $user[0]->mother_name }}" placeholder="Mother's name" required="">
+                     </div>
+                  </div>
+                  <div class="row">
+                    
+                     <div class="form-group col-md-6">
+                        <label for="email">Email-Id</label>
+                        <input type="text" class="form-control" id="email" name="email" value="{{ $user[0]->email }}" placeholder="Enter Email-Id" readonly>
+                     </div>
+
+                     <div class="form-group col-md-6">
+                        <label for="alter_mail">Alternate Email-Id</label>
+                        <input type="email" class="form-control" id="alter_mail" name="alter_mail" value="{{ $user[0]->alter_mail }}" placeholder="Enter alternate Email-Id" required="">
+                     </div>
+                  </div>
+                  
+                  {{-- 
+                  <div class="row">
+                     <div class="form-group col-md-6">
+                        <label>Date Of Birth</label>
+                     </div>
+                  </div> --}}
+
+<hr>
+                  <p><b>Contact No.</b></p>
+                  <div class="row">
+                   
+                    <div class="form-group col-md-4">
+                    <label for="phonePersonal">Personal</label>
+                    <input type="number" class="form-control" name="phonePersonal" id="phonePersonal" required>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                    <label for="phoneGuardian">Guardian</label>
+                    <input type="number" class="form-control" name="phoneGuardian" id="phoneGuardian" required>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                    <label for="phoneResidential">Residential</label>
+                    <input type="number" class="form-control" name="phoneResidential" id="phoneResidential" >
+                    </div>
+
+                  </div>  
+
+<hr>
+
+                <p><b>Internship Details</b></p>
+                <div class="row">
+                     
+                     <div class="form-group col-md-12" id="addInterDetails">
+                     
+                        <button type="button" onclick="addInternshipFields();" name="addInternship" id="addInternship" class="btn btn-outline-success">+</button>
+
+                     </div>
+                
+                </div>
+                  <div class="row">
+                    <div class="form-group col-md-12" id="internShip">
+                        <script>
+                        function addInternshipFields(){
+                         
+                       var parent=document.getElementById("internShip");
+                              var hr= document.createElement("hr");
+                              // hr.setAttribute("style","height:2px; background-color:red;");
+                             
+
+                        var grandParent=document.createElement("div");
+                              grandParent.setAttribute("class","card border border-danger"); 
+                              grandParent.setAttribute("style","margin-bottom:15px;"); 
+
+
+                              grandParent.appendChild(hr);
+                          
+                              var i=Math.round(Math.random()*3000);
+
+
+                            var div=document.createElement("div");
+                                    div.setAttribute("class","form-group col-md-12")
+                                            var  cancelBtn=document.createElement("buttton");
+                                                    cancelBtn.setAttribute("onclick","deleteInternship(this)");
+                                                    cancelBtn.setAttribute("class","btn btn-outline-danger");
+                                                    cancelBtn.innerHTML="Cancel";
+                                                    div.appendChild(cancelBtn);
+                             
+                                          
+
+                                                    grandParent.appendChild(div);
+                            
+                                var div=document.createElement("div");
+                                    div.setAttribute("class","form-group col-md-12")
+                                            var  organisationLabel=document.createElement("label");
+                                                    organisationLabel.setAttribute("for","orgName");
+                                                    organisationLabel.innerHTML="Organisation:";
+                                                    div.appendChild(organisationLabel);
+
+                                            var orgInput=document.createElement("input");
+                                                orgInput.setAttribute("type","text");
+                                                orgInput.setAttribute("class","form-control");  
+                                                div.appendChild(orgInput);
+
+                                                    grandParent.appendChild(div);
+                                                   
+                                                
+
+                                 var div=document.createElement("div");
+                                     div.setAttribute("class","form-group col-md-12")
+                                            var  duration=document.createElement("label");
+                                                    duration.setAttribute("for","duration");
+                                                    duration.innerHTML="Duration(Start date-End Date):";
+                                                    div.appendChild(duration);
+
+                                            var durInput=document.createElement("input");
+                                                durInput.setAttribute("type","text");
+                                                durInput.setAttribute("class","form-control");  
+                                                div.appendChild(durInput);
+
+                                                grandParent.appendChild(div);
+                                                 
+
+                                 var div=document.createElement("div");
+                                     div.setAttribute("class","form-group col-md-12")
+                                            var  domain=document.createElement("label");
+                                                    domain.setAttribute("for","domain");
+                                                    domain.innerHTML="Domain:";
+                                                    div.appendChild(domain);
+
+                                            var domInput=document.createElement("input");
+                                                domInput.setAttribute("type","text");
+                                                domInput.setAttribute("class","form-control");  
+                                                div.appendChild(domInput);
+
+                                                grandParent.append(div);
+                                                
+
+                                  var div=document.createElement("div");
+                                     div.setAttribute("class","form-group col-md-12")
+                                          
+                                       var inDiv=document.createElement("div");
+                                           inDiv.setAttribute("class","form-check form-check-inline");
+
+                                            var typeInput=document.createElement("input");
+                                                typeInput.setAttribute("type","radio");
+                                                typeInput.setAttribute("name","typeOfInternship"+i);
+                                                typeInput.setAttribute("value","online");
+                                                typeInput.setAttribute("id","online");
+                                                typeInput.setAttribute("class","form-check-input");
+                                                 
+                                                inDiv.appendChild(typeInput);
+                                               
+                                                
+
+
+                                            var  Type=document.createElement("label");
+                                                    Type.setAttribute("for","Type");
+                                                    Type.innerHTML="Online";
+                                                    Type.setAttribute("class","form-check-label");
+                                                    inDiv.appendChild(Type);
+                                                    div.appendChild(inDiv); 
+
+                                        var inDiv=document.createElement("div");
+                                           inDiv.setAttribute("class","form-check form-check-inline");
+
+                                            var typeInput=document.createElement("input");
+                                                typeInput.setAttribute("type","radio");
+                                                typeInput.setAttribute("class","form-check-input");
+                                                typeInput.setAttribute("name","typeOfInternship"+i++);
+                                                typeInput.setAttribute("value","offline");
+                                                typeInput.setAttribute("id","offline");
+                                                
+                                                inDiv.appendChild(typeInput); 
+                                                div.appendChild(inDiv);
+                                                
+
+
+                                            var  Type=document.createElement("label");
+                                                    Type.setAttribute("for","Type");
+                                                    Type.innerHTML="Offline";
+                                                    Type.setAttribute("class","form-check-label");
+                                                    inDiv.appendChild(Type);
+                                                    div.appendChild(inDiv);
+                                                       
+                                                    grandParent.appendChild(div);
+                                                    grandParent.appendChild(document.createElement("br"));
+
+                                            parent.appendChild(grandParent);        
+                                           
+
+                        }
+
+
+                        function deleteInternship($this){
+                           console.log($this.parentElement.parentElement.parentElement.removeChild($this.parentElement.parentElement));
+                        }
+
+
+
+                           
+
+                        </script>
+
+                     
+                    </div>
+                  </div>  
+<hr>
+
+
+
+                  <div class="row">
+                     <div class="form-group col-md-6">
+                        <label for="dob_year"><font style="color: #dc3545;">(DOB)</font>&nbsp;Year</label>
+                        <input type="date" class="form-control" id="date" name="date" value="{{ $user[0]->dob}}" placeholder="Enter Email-Id" required="">
+                        {{-- <select class="form-control" id="dob_year" name="dob_year" required="">   
+                        </select>
+                         --}}{{-- <script type="text/javascript">
+                           var dt = new Date();
+                           var year = 1990;
+                           var till = dt.getYear() + 1899;
+                           var options = "";
+                           var x = {{ $year}};
+                           for(var y=till; y>=year; y--) {
+                              if(y==x) {
+                                    options += "<option value="+y+" selected>"+ y +"</option>";   
+                              }
+                              else {
+                                    options += "<option value="+y+">"+ y +"</option>";
+                              }
+                           }
+                           document.getElementById("dob_year").innerHTML = options;
+                        </script> --}}
+                     </div>
+                     {{-- <div class="form-group col-md-4">
+                        <label for="dob_month"><font style="color: #dc3545;">(DOB)</font>&nbsp;Month</label>
+                        <select class="form-control" id="dob_month" name="dob_month" required="" > 
+                           @foreach($months as $key=>$dob_month)
+                             @if( $months_select == $key )
+                               <option value="{{$key}}" selected>{{$dob_month}}</option>
+                             @endif
+                             @if( $months_select != $key )
+                               <option value="{{$key}}">{{$dob_month}}</option>
+                             @endif
+                           @endforeach
+                        </select>
+                     </div> --}}
+                     {{-- <div class="form-group col-md-4">
+                        <label for="dob_day"><font style="color: #dc3545;">(DOB)</font>&nbsp;Date</label>
+                        <input type="Number" min="1" class="form-control" id="dob_day" name="dob_day" value = "" required="">
+                     </div> --}}
+                  <div class="form-group col-md-6">
+                        <label for="blood_group">Blood Group</label>
+                       
+
+                        <input type="text" class="form-control" id="blood_group" name="blood_group"  value="{{ $user[0]->blood_group }}" required=""> 
+                           {{-- @foreach($blood_groups as $key=>$blood_group)
+                             @if( $blood_groups_select == $key )
+                               <option value="{{$key}}" selected>{{$blood_group}}</option>
+                             @endif
+                             @if( $blood_groups_select != $key )
+                               <option value="{{$key}}">{{$blood_group}}</option>
+                             @endif
+                           @endforeach --}}
+                        </select>
+                     </div>
+                  </div>
+                     <div class="row">
+                     <div class="form-group col-md-6">
+                        <label for="gender">Gender</label>
+                            <div class="input-group">
+                                   
+                                    <select class="custom-select"  id="gender" name="gender"  >
+
+                                      <option selected>{{ $user[0]->gender }}</option>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option>
+                                     </select>
+                            </div>
+
+
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="adhar">UID(Aadhar Number)</label>
+                        <input type="text" class="form-control" id="adhar" name="adhar" value="{{ $user[0]->uid }}" placeholder="Enter UID" required="">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="form-group col-md-6">
+                        <label for="shift">Shift</label>
+                        <div class="input-group">
+                                   
+                                   <select class="custom-select"  id="shift" name="shift"   >
+                                         <option selected>{{ $user[0]->shift }}</option>
+                                         <option value="shiftOption2"><?php if( $user[0]->shift=="Morning") echo "Evening"; else echo "Morning" ?></option>
+                                        
+                                    </select>
+                           </div>
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="year_of_joining">Year of Joining </label>
+                        <input type="number" class="form-control" min="1984" max=<?php echo date("Y"); ?> id="year_of_joining" name="year_of_joining" value="{{ $user[0]->year_of_joining }}" placeholder="Enter year of joining" required="">
+                     </div>
+                  </div>
+                  
+                  <hr>
+                  <b><p>Address</p></b>
+                  <div class="row">
+                     <div class="form-group col-md-6">
+                        <label for="address_line_1">Address Line 1</label>
+                        <textarea class="form-control" id="address_line_1" name="address_line_1" value="{{ $user[0]->address_line_1 }}" placeholder="Enter Address" required=""></textarea>
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="address_line_2">Address Line 2 </label>
+                        <textarea class="form-control" id="address_line_2" name="address_line_2" value="{{ $user[0]->address_line_2 }}" placeholder="Enter Address" required=""></textarea>
+                     </div>
+                  </div>
+
+
+                  <div class="row">
+                              
+                              <div class="form-group col-md-12">
+                              <label for="addressOfCorres">Address Of Correspondence</label>
+                              <textarea class="form-control" name="addressOfCorres" id="addressOfCorres"></textarea>
+                              </div>
+                  
+                  </div>
+                  {{-- <div class="row">
+                     <div class="form-group col-md-12">
+                        <label for="check_adhar"><h6>Applying Company name:</h6></label>
+                     </div>
+                     
+                  </div>
+                  <div class="row">
+                     <div class="form-group col-md-6">
+                        <label for="non_dream">Non Dream Company</label>
+                        <input type="text" class="form-control" id="non_dream" name="non_dream" value="" placeholder="Non Dream Company" required="">
+                     </div>
+                     <div class="form-group col-md-6">
+                        <label for="dream">Dream Company</label>
+                        <input type="text" class="form-control" id="dream" name="dream" value="" placeholder="Dream Company" required="">
+                     </div>
+                  </div>
+                   --}}
+                  {{-- <div class = "row">
+                     <div class="form-group col-md-6">
+                        <label for="check_adhar">write your comment?</label><br> 
+                        <input type="checkbox" name="terms" id="terms" value="terms"  />Terms & sondition
+                        
+                     </div>
+                      <div class="form-group col-md-6">
+                        <textarea rows="4" cols="40" id = "comments" name = "comments" placeholder="write your comments"></textarea>
+                     </div>
+                  </div> --}}
+
+                  <div class="row">
+                     <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-success shadow mb-5 rounded" id="student_details_submit"  name="student_details_submit" style="width: 100%;">Continue</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+         </form>
+      </div>
+      <div class="col-sm-2"></div>
+   </div>
+</div>
+</body>
+@endsection
